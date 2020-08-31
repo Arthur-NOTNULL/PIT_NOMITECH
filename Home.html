@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="assets/vendor/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="node_modules/mdbootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/mdbootstrap/css/mdb.min.css">
+    <link rel="stylesheet" href="node_modules/mdbootstrap/css/style.css">
+  <title>Mind It - Home</title>
+</head>
+<body>
+  <!-- ======= Menu ======= -->
+  <header id="header" class="fixed-top"  style="background-color: black;">
+    <div class="container d-flex align-items-center">
+      <a href="index.html" class="logo mr-auto"><img src="images/logo1 (1).png" alt="logo do site" class="img-fluid" ></a>
+      <nav  class="nav-menu d-none d-lg-block ">
+        <ul>
+          <li class="active"><a href="Home.html">Home</a></li>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">Planos</a></li>
+          <li><a href="#fale_conosco">Fale Conosco</a></li>
+          <li class="get-started"><a href="#">Get Started</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <!-- ======= Corpo da página ======= -->
+  <section id="hero">
+    <div class="container">
+      <div class="row d-flex align-items-center">
+      <div class=" col-lg-6 py-5 py-lg-0 order-2 order-lg-1" data-aos="fade-right">
+        <h1>Your new digital experience with Bocor</h1>
+        <h2>We are team of talanted designers making websites with Bootstrap</h2>
+        <a href="#about" class="btn-get-started scrollto">Get Started</a>
+      </div>
+      <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
+        <img src="./images/logo1.png" class="img-fluid" alt="">
+      </div>
+    </div>
+    </div>
+  </section>
+  <!-- Fale Conosco -->
+  <section id="fale_conosco"  style="margin-top: 200px;">
+    <div class="container">
+      <div class="section-title"><br><br>
+        <h2 data-aos="fade-in" class="aos-init aos-animate">Fale Conosco</h2>
+        <p data-aos="fade-in" class="aos-init aos-animate">Em caso de dúvida entre em contato pelos meios de comunicação abaixo:</p>
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-6">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="info-box aos-init aos-animate" data-aos="fade-up">
+                <i class="bx bx-map"></i>
+                <h3 style="color: #fdd835;">Endereço</h3>
+                <p>Vale do Silício, Califórnia, USA
+                </p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box mt-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                <i class="bx bx-envelope"></i>
+                <h3 style="color: #fdd835;">Nosso Email</h3>
+                <p>contato.mindit@gmail.com</p>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="info-box mt-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+                <i class="bx bx-phone-call"></i>
+                <h3 style="color: #fdd835;">Nos Ligue</h3>
+                <p>+55 31 995723942</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-lg-6">
+          <form action="forms/contact.php" method="post" role="form" class="php-email-form aos-init aos-animate" data-aos="fade-up">
+            <div class="form-row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Seu Nome" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <div class="validate"></div>
+              </div>
+              <div class="col-md-6 form-group">
+                <input  type="email" class="form-control" name="email" id="email" placeholder="Seu email" data-rule="email" data-msg="Please enter a valid email">
+                <div class="validate"></div>
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" id="subject" placeholder="Assunto" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+              <div class="validate"></div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Escreva algo para nós" placeholder="Message"></textarea>
+              <div class="validate"></div>
+            </div>
+            <div class="mb-3" hidden>
+              <div class="loading">Carregando</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Sua mensagem foi enviada. Obrigado!!</div>
+            </div>
+            <div class="button-enviar"><button  class="btn btn-outline-warning btn-block" type="button" >Enviar</button></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ======= Footer ======= -->
+ 
+  <!-- Footer -->
+<footer class="page-footer font-small cyan darken-3">
+
+  <!-- Footer Elements -->
+  <div class="container">
+
+    <!-- Grid row-->
+    <div class="row">
+
+      <!-- Grid column -->
+      <div class="col-md-12 py-5">
+        <div class="mb-5 flex-center">
+
+          <!-- Facebook -->
+          <a class="fb-ic">
+            <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!-- Twitter -->
+          <a class="tw-ic">
+            <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!-- Google +-->
+          <a class="gplus-ic">
+            <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!--Linkedin -->
+          <a class="li-ic">
+            <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!--Instagram-->
+          <a class="ins-ic">
+            <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+          </a>
+          <!--Pinterest-->
+          <a class="pin-ic">
+            <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+          </a>
+        </div>
+      </div>
+      <!-- Grid column -->
+
+    </div>
+    <!-- Grid row-->
+
+  </div>
+  <!-- Footer Elements -->
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"> mindit.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+
+  <!-- ======= links externos ======= -->
+  <script type="text/javascript" src="node_modules/mdbootstrap/js/jquery.min.js"></script>
+<script type="text/javascript" src="node_modules/mdbootstrap/js/popper.min.js"></script>
+<script type="text/javascript" src="node_modules/mdbootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="node_modules/mdbootstrap/js/mdb.min.js"></script>
+  <!-- ======= links internos ======= -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
