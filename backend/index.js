@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
 const app = express();
+require('./database');
 
 const PORTA = process.env.PORT || 8080;
 
