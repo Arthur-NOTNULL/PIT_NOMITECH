@@ -10,13 +10,18 @@ const PORTA = process.env.PORT || 8080;
 app.use(bodyParser.json());
 app.use(cors());
 
-app.use("/**", async (req, res, next) => {
-    if (req.statusCode == 404) res.json({aviso:"página não encontrada"})
-    if (req.statusCode == 500) req.json({aviso: "erro do servidor"})
-    next();
+app.use(routes);
+
+app.use((req, res, next) => {
+    const error = new Error("página não encontrada");
+    error.status = 404;
+    next(error); 
 });
 
-app.use(routes);
+app.use((error, req, res, next) => {
+    res.status(error.status || 500);
+    res.json({error: error.message});
+});
 
 app.listen(PORTA, () => {
     console.log(`O pai tá on na porta ${PORTA}`);

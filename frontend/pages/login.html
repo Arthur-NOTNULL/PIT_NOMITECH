@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindIt - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body>
+    <section class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <a class="btn-voltar" href="../index.html">
+                    <img src="../images/left-arrow.svg" alt="left arrow">
+                </a>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="img">
+            <img src="../images/undraw_Outer_space_drqu.svg" alt="img">
+        </div>
+        <div class="login-container">
+            <form id="login">
+                <div class="input-div one">
+                    <div class="i">
+                        <i class="fa fa-user"></i>
+                    </div>
+                    <div>
+                        <h5>Email</h5>
+                        <input type="text" id="input" class="input">
+                    </div>
+                </div>
+                <span class="validate" id="email"></span>
+                <div class="input-div two">
+                    <div class="i">
+                        <i class="fa fa-lock"></i>
+                    </div>
+                    <div>
+                        <h5>Senha</h5>
+                        <input type="password" id="input" class="input">
+                    </div>
+                </div>
+                <span class="validate" id="senha"></span>
+                <a class="esqueceu-senha" href="#">Esqueceu sua senha?</a>
+                <input type="submit" class="btn" id="login" value="LOGIN">
+                <p>Não é cadastrado?  <a href="./cadastro.html" class="cadastrar">Cadastre-se.</a></p>
+            </form>
+        </div>
+    </div>
+     <!--Scripts Externos-->
+     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+     <!--Scripts do Projeto-->
+     <script src="../js/login.js"></script>
+</body>
+</html>
