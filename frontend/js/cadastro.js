@@ -181,7 +181,7 @@ for (const toggle of toggles) {
 
             const inputs = document.querySelectorAll('#input-form');
             const btnInvestidor = document.querySelector('input#cadastrarInvestidor');
-            btnInvestidor.addEventListener("click", event => {
+            btnInvestidor.addEventListener("click", async (event) => {
                 event.preventDefault();
 
                 const spanEmail = document.querySelector('span#email');
@@ -232,6 +232,17 @@ for (const toggle of toggles) {
 
                 if (fieldCheck === true) {
                     if (inputs[3].value !== inputs[2].value) return spanSenha.innerHTML += 'Senhas não conferem';
+                    
+                    const resposta = await axios.post('http://localhost:8080/investidor',
+                        {
+                            nome: inputs[0].value,
+                            telefone: inputs[4].value,
+                            email: inputs[1].value,
+                            senha: inputs[2].value,
+                            data_nascimento: "2003-08-17",
+                            cpf: inputs[5].value
+                        }
+                    )
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -239,15 +250,24 @@ for (const toggle of toggles) {
                         timer: 3000,
                         timerProgressBar: true,
                         didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
                         }
                     })
-                    
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Signed in successfully'
-                    })
+                      
+                    console.log(resposta);
+                    if (resposta.data.error) {
+                        Toast.fire({
+                            icon: 'error',
+                            title: resposta.data.error
+                        })
+                    } else {
+                        Toast.fire({
+                            icon: 'success',
+                            title: `Usuário cadastrado com sucesso`
+                        })
+                    }
+
                 }
             });
         }else if (toggle.value === 'empreendedor') {

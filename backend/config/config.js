@@ -1,9 +1,9 @@
 const env = require('dotenv');
 
 module.exports = {
-  username: env.config.USER_NAME,
-  password: env.config.USER_PASSWORD,
-  database: env.config.DB_NAME,
-  host: env.config.DB_HOST,
+  username: "root",
+  password: null,
+  database: "MindIt",
+  host: "localhost",
   dialect: "mysql"
 }

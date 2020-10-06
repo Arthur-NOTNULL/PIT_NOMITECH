@@ -21,7 +21,7 @@ inputs.forEach(input => {
 const btnLogin = document.querySelector('input#login');
 const form = document.querySelector('form#login');
 
-btnLogin.addEventListener("click", event => {
+btnLogin.addEventListener("click", async (event) => {
     event.preventDefault();
 
     let fieldCheck = true;
@@ -44,6 +44,15 @@ btnLogin.addEventListener("click", event => {
     } 
 
     if (fieldCheck === true) {
+        console.log(fields[0].value, fields[1].value)
+        const resposta = await axios({
+            method: 'GET',
+            url: 'http://localhost:8080/investidor', 
+            params: {
+                email: fields[0].value,
+	            senha: fields[1].value
+            }
+        });
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',
@@ -56,9 +65,18 @@ btnLogin.addEventListener("click", event => {
             }
         })
           
-        Toast.fire({
-            icon: 'success',
-            title: 'Signed in successfully'
-        })
+        console.log(resposta);
+        if (resposta.data.error) {
+            Toast.fire({
+                icon: 'error',
+                title: resposta.data.error
+            })
+        } else {
+            localStorage.setItem("Usuario-Logado", JSON.stringify(resposta.data));
+            Toast.fire({
+                icon: 'success',
+                title: `Usuário ${resposta.data.nome} logado com sucesso`
+            })
+        }
     }
 });
