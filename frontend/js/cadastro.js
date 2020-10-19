@@ -79,7 +79,7 @@ areaConteudo.innerHTML =
                     <span class="validate" id="cpf"></span>
                 </div>
             </div>
-            <input type="submit" class="btn" id="cadastrarEmpreendedor" value="CRIAR CONTA">
+            <input type="submit" class="btn btn-cadastrar" id="cadastrarEmpreendedor" value="CRIAR CONTA">
         </form>
     </div>
     <div class="img">
@@ -172,7 +172,7 @@ for (const toggle of toggles) {
                                 <span class="validate" id="cpf"></span>
                             </div>
                         </div>
-                        <input type="submit" class="btn" id="cadastrarInvestidor" value="CRIAR CONTA">
+                        <input type="submit" class="btn btn-cadastrar" id="cadastrarInvestidor" value="CRIAR CONTA">
                     </form>
                 </div>
             </section>
@@ -230,9 +230,12 @@ for (const toggle of toggles) {
                     fieldCheck = false;
                 } 
 
-                if (fieldCheck === true) {
-                    if (inputs[3].value !== inputs[2].value) return spanSenha.innerHTML += 'Senhas não conferem';
-                    
+                if (inputs[3].value !== inputs[2].value) {
+                    spanSenha.innerHTML += 'Senhas não conferem';
+                    fieldCheck = false;
+                } 
+
+                if (fieldCheck === true) {                    
                     const resposta = await axios.post('http://localhost:8080/investidor',
                         {
                             nome: inputs[0].value,
@@ -264,7 +267,7 @@ for (const toggle of toggles) {
                     } else {
                         Toast.fire({
                             icon: 'success',
-                            title: `Usuário cadastrado com sucesso`
+                            title: `Investidor cadastrado com sucesso`
                         })
                     }
 
@@ -348,7 +351,7 @@ for (const toggle of toggles) {
                                 <span class="validate" id="cpf"></span>
                             </div>
                         </div>
-                        <input type="submit" class="btn" id="cadastrarEmpreendedor" value="CRIAR CONTA">
+                        <input type="submit" class="btn btn-cadastrar" id="cadastrarEmpreendedor" value="CRIAR CONTA">
                     </form>
                 </div>
                 <div class="img">
@@ -408,8 +411,12 @@ for (const toggle of toggles) {
                     fieldCheck = false;
                 } 
 
+                if (inputs[3].value !== inputs[2].value) {
+                    spanSenha.innerHTML += 'Senhas não conferem';
+                    fieldCheck = false;
+                } 
+
                 if (fieldCheck === true) {
-                    if (inputs[3].value !== inputs[2].value) return spanSenha.innerHTML += 'Senhas não conferem';
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -507,8 +514,12 @@ btnLogin.addEventListener("click", event => {
         fieldCheck = false;
     } 
 
+    if (inputsLoad[3].value !== inputsLoad[2].value) {
+        spanSenha.innerHTML += 'Senhas não conferem';
+        fieldCheck = false;
+    }
+
     if (fieldCheck === true) {
-        if (inputsLoad[3].value !== inputsLoad[2].value) return spanSenha.innerHTML += 'Senhas não conferem';
         const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',

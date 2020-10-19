@@ -46,7 +46,7 @@ section nav.navbar {
     font-weight: 700;
     color:#E1E1E6;
     opacity: .8;
-    font-size: 3rem;
+    font-size: 5rem;
     animation: fade;
     animation-duration: 0.5s;
 }
