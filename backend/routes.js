@@ -1,6 +1,6 @@
 const routes = require('express').Router();
 
-const InvestidorController = require('./controllers/InvestidorController');
+const InvestidorController = require('./controllers/Investidor.controller');
 
 routes.get('/investidor', InvestidorController.singIn);
 routes.post('/investidor', InvestidorController.singUp);
