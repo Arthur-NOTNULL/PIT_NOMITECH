@@ -1,28 +1,8 @@
-const express = require('express');
-const cors = require('cors');
-const bodyParser = require('body-parser');
+const server = require("./src/server");
+require('dotenv/config');
 
-const routes = require('./routes');
-const errorHandler = require('./errors/handler');
-require('express-async-errors');
+const PORT = process.env.PORT;
 
-const app = express();
-require('./database');
-
-const PORTA = process.env.PORT || 8080;
-
-app.use(bodyParser.json());
-app.use(cors());
-
-app.use(routes);
-app.use(errorHandler);
-
-app.use((req, res, next) => {
-    const error = new Error("página não encontrada");
-    error.status = 404;
-    next(error); 
+server.listen(PORT, () => {
+    console.log(`Servidor rodando na porta: ${PORT}`);
 });
-
-app.listen(PORTA, () => {
-    console.log(`O pai tá on na porta ${PORTA}`);
-})

@@ -8,9 +8,5 @@ module.exports = {
             data_nascimento: investidor.data_nascimento,
             cpf: investidor.cpf
         }
-    },
-
-    renderMany(investidores) {
-        return investidores.map(investidor => this.render(investidor))
     }
 }
