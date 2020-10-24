@@ -1,22 +1,22 @@
-const { createInvestor, getInvestor } = require('../../services/investor.service');
+const { createEntrepreneur, getEntrepreneur } = require('../../services/entrepreneur.service');
 const errorHandler = require('../../helpers/handler.error');
-const { InvestorModel } = require('../../models');
+const { EntrepreneurModel } = require('../../models');
 
 const SingUp = async (req, res) => {
     const { nome, telefone, email, senha, data_nascimento, cpf } = req.body;
     try {
         const data = { nome, telefone, email, senha, data_nascimento, cpf }
 
-        const checkIfInvestorExits = await InvestorModel.findOne({
+        const checkIfEntrepreneurExits = await EntrepreneurModel.findOne({
             where: {
                 email
             } 
         });
 
-        if (checkIfInvestorExits) 
-            throw errorHandler("Falha ao criar investidor", 400, [{ message: "E-mail já cadastrado"}]);
+        if (checkIfEntrepreneurExits) 
+            throw errorHandler("Falha ao criar empreendedor", 400, [{ message: "E-mail já cadastrado"}]);
 
-        createInvestor(data)
+            createEntrepreneur(data)
             .then(token => {
                 res.status(201).json(token)
             })
@@ -31,18 +31,16 @@ const SingUp = async (req, res) => {
 const SingIn = async (req, res) => {
     const {email, senha} = req.body;
     try {
-        getInvestor(email, senha)
+        getEntrepreneur(email, senha)
             .then(token => {
                 res.status(201).json(token)
             })
             .catch(err => {
                 res.status(err.status).send(err)
             })
-         
     } catch (error) {
         res.status(error.status).send(error);
-    }
-    
+    }  
 }
 
 module.exports = {

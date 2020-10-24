@@ -1,8 +1,8 @@
-const connection = require("../config/database");
+const connection = require('../config/database');
 const { DataTypes } = require('sequelize');
 const {calcAge} = require('../utils/calcAge');
 
-const InvestidorModel = connection.define("INVESTIDOR", {
+const EntrepreneurModel = connection.define("EMPREENDEDOR", {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -90,13 +90,17 @@ const InvestidorModel = connection.define("INVESTIDOR", {
                 msg: "Por favor informe seu cpf"
             }
         },
-    }
+    },
+    assinatura_cod_assinatura: {
+        type: DataTypes.INTEGER
+    },
 }, {
     underscored: true,
-    modelName: "INVESTIDOR",
+    modelName: "EMPREENDEDOR",
     freezeTableName: true,
     timestamps: false,
     defaultScope: false
 });
 
-module.exports = InvestidorModel; 
+
+module.exports = EntrepreneurModel;
