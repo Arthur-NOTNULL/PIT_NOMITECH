@@ -10,8 +10,6 @@ const getInvestor = async (email, password) => {
         }
     })
 
-    console.log(investor)
-
     if (investor) {
         return GenerateToken(investor.toJSON());
     } 

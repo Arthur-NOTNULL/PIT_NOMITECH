@@ -5,5 +5,5 @@ const EntrepreneurRoute = require("../controllers/entrepreneur/entrepreneur.rout
 module.exports = (app) => {
     app.use('/auth', UserRoute);
     app.use('/investors/auth', InvestorRoute);
-    app.use('/entrepreneur/auth', EntrepreneurRoute);
+    app.use('/entrepreneurs/auth', EntrepreneurRoute);
 }

@@ -45,38 +45,51 @@ btnLogin.addEventListener("click", async (event) => {
 
     if (fieldCheck === true) {
         console.log(fields[0].value, fields[1].value)
-        const resposta = await axios({
-            method: 'GET',
-            url: 'http://localhost:8080/investidor', 
-            params: {
-                email: fields[0].value,
-	            senha: fields[1].value
-            }
-        });
-        const Toast = Swal.mixin({
-            toast: true,
-            position: 'top-end',
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.addEventListener('mouseenter', Swal.stopTimer)
-              toast.addEventListener('mouseleave', Swal.resumeTimer)
-            }
+        const resposta = login(fields[0].value, fields[1].value)
+        .then(res => {
+            console.log(res)
         })
-          
-        console.log(resposta);
-        if (resposta.data.error) {
-            Toast.fire({
-                icon: 'error',
-                title: resposta.data.error
-            })
-        } else {
-            localStorage.setItem("Usuario-Logado", JSON.stringify(resposta.data));
-            Toast.fire({
-                icon: 'success',
-                title: `Usuário ${resposta.data.nome} logado com sucesso`
-            })
+        .catch(err => {
+            console.log(err)
+        })
+        if (resposta !== true) {
+            alert('Deu ruim')
         }
     }
 });
+
+async function login (email, senha) {
+    const {data} = await loginInvestidor(email, senha)
+
+    if (data.token) {
+        localStorage.setItem('token', data.token);
+        return true;
+    } else {
+        const {data} = await loginEmpreendedor(email, senha)
+        if (data.token) {
+            alert('empreendedor mlk')
+        }
+        return false;
+    }
+
+}
+
+async function loginInvestidor (email, senha) {
+    const data = axios.post('http://localhost:8080/investors/auth/singin', {
+        email,
+        senha
+    })
+
+    return data;
+}
+
+async function loginEmpreendedor (email, senha) {
+    const resposta = axios.post('http://localhost:8080/entrepreneurs/auth/singin', {
+        email,
+        senha
+    })
+    .then(token => token.data)
+    .catch(err => err)
+
+    return resposta;
+}
