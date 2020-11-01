@@ -1,8 +1,8 @@
 const connection = require('../config/database');
 const { DataTypes } = require('sequelize');
 
-const AsignatureModel = connection.define("ASSINATURA", {
-    cod_assinatura: {
+const SignatureModel = connection.define("ASSINATURAS", {
+    id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true 
@@ -46,13 +46,23 @@ const AsignatureModel = connection.define("ASSINATURA", {
             },
         },
     },
+    id_usuario: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'USUARIOS',
+            key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+    },
 }, {
     underscored: true,
-    modelName: "EMPREENDEDOR",
+    modelName: "ASSINATURAS",
     freezeTableName: true,
     timestamps: false,
     defaultScope: false
 });
 
 
-module.exports = AsignatureModel;
+module.exports = SignatureModel;

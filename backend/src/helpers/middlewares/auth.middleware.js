@@ -15,4 +15,16 @@ const authentication = (req, res, next) => {
     }
 } 
 
-module.exports = authentication;
+const authorization = (...permittedRoles) => (req, res, next) => {
+    if (req.user && permittedRoles.includes(req.user.tipo)) {
+        next();
+    } else {
+        res.sendStatus(403);
+    }
+}
+
+
+module.exports = {
+    authentication,
+    authorization
+}

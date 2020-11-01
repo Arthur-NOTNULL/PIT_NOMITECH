@@ -7,6 +7,7 @@ module.exports = {
             email: user.email,
             data_nascimento: user.data_nascimento,
             cpf: user.cpf,
+            tipo: user.tipo,
             iat: user.iat
         }
     }

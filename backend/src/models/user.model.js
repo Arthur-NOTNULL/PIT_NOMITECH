@@ -1,12 +1,13 @@
 const connection = require('../config/database');
 const { DataTypes } = require('sequelize');
+
 const {calcAge} = require('../utils/calcAge');
 
-const EntrepreneurModel = connection.define("EMPREENDEDOR", {
+const User = connection.define('USUARIOS', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
-        primaryKey: true 
+        primaryKey: true
     },
     nome: {
         type: DataTypes.TEXT,
@@ -22,15 +23,6 @@ const EntrepreneurModel = connection.define("EMPREENDEDOR", {
     },
     telefone: {
         type: DataTypes.TEXT,
-        validate: {
-            notEmpty: {
-                msg: "Campo telefone não pode ser vazio"
-            },
-            notNull: {
-                msg: "Por favor informe seu telefone"
-            },
-        },
-        allowNull: false
     },
     email: {
         type: DataTypes.TEXT,
@@ -46,7 +38,7 @@ const EntrepreneurModel = connection.define("EMPREENDEDOR", {
             isEmail: {
                 msg: "Informe um e-mail válido"
             }
-        },
+        }
     },
     senha: {
         type: DataTypes.TEXT,
@@ -57,50 +49,42 @@ const EntrepreneurModel = connection.define("EMPREENDEDOR", {
             },
             notNull: {
                 msg: "Por favor informe uma senha"
-            },
-        },
+            }
+        }
     },
     data_nascimento: {
         type: DataTypes.DATEONLY,
-        allowNull: false,
         validate: {
-            notEmpty: {
-                msg: "Campo data de nascimento não pode ser vazio"
-            },
             isDate: {
                 msg: "Informe uma data válida"
-            }, 
-            notNull: {
-                msg: "Por favor informe sua data de nascimento"
             },
             isOldEnough(date) {
                 const age = Number(calcAge(date));
                 if (age < 18) throw new Error('Precisa ser maior de idade para acessar')
-            },
-        },
+            }
+        }
     },
     cpf: {
-        type: DataTypes.CHAR(19),
+        type: DataTypes.TEXT
+    },
+    tipo: {
+        type: DataTypes.TEXT,
         allowNull: false,
         validate: {
             notEmpty: {
-                msg: "Campo cpf não pode ser vazio"
+                msg: "Campo tipo não pode ser vazio"
             },
             notNull: {
-                msg: "Por favor informe seu cpf"
+                msg: "Por favor informe um tipo"
             }
-        },
-    },
-    assinatura_cod_assinatura: {
-        type: DataTypes.INTEGER
-    },
+        }
+    }
 }, {
     underscored: true,
-    modelName: "EMPREENDEDOR",
+    modelName: "USUARIOS",
     freezeTableName: true,
     timestamps: false,
     defaultScope: false
 });
 
-
-module.exports = EntrepreneurModel;
+module.exports = User;
