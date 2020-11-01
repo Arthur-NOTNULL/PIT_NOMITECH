@@ -45,51 +45,102 @@ btnLogin.addEventListener("click", async (event) => {
 
     if (fieldCheck === true) {
         console.log(fields[0].value, fields[1].value)
-        const resposta = login(fields[0].value, fields[1].value)
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => {
-            console.log(err)
-        })
-        if (resposta !== true) {
-            alert('Deu ruim')
-        }
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+
+        doSingin(fields[0].value, fields[1].value)
+            .then(res => {
+                if (res == true) {
+                    getMe()
+                        .then(res => { 
+                            switch(res.tipo) {
+                                case "investidor":
+                                    window.location = './InvestidorPages/index.html'
+                                    break;
+                                case "empreendedor":
+                                    window.location = './EmpreendedorPages/index.html';
+                                    break;
+                                default: 
+                                    Toast.fire({
+                                        icon: 'error',
+                                        title: 'Falha ao efetuar o login'
+                                    })
+                                    break;
+                            }
+                         })
+                        .catch(err => { 
+                            console.log(err)
+                            return Toast.fire({
+                                icon: 'error',
+                                title: 'Usuário não autorizado'
+                            })
+                         })
+                }
+            })
+            .catch(err => {
+                console.log(err)
+                return Toast.fire({
+                    icon: 'error',
+                    title: 'E-mail ou senha inválidos'
+                })
+            })
+        
     }
 });
 
-async function login (email, senha) {
-    const {data} = await loginInvestidor(email, senha)
+const BASE_URL = "http://localhost:8080";
+const AUTH_LOGIN = '/auth/singin';
+const AUTH_ME = '/auth/me';
 
-    if (data.token) {
-        localStorage.setItem('token', data.token);
-        return true;
-    } else {
-        const {data} = await loginEmpreendedor(email, senha)
-        if (data.token) {
-            alert('empreendedor mlk')
+const http = axios.create({
+    baseURL: BASE_URL
+});
+
+const pegaToken = () => {
+    return localStorage.getItem('token');
+}
+
+const salvaToken = (token) => {
+    localStorage.setItem("token", token);
+} 
+
+http.interceptors.request.use(config => {
+    const token = pegaToken();
+    if(token) {
+        config.headers['Authorization'] = `Bearer ${token}`
+    }
+    return config;
+})
+
+const getMe = async () => {
+    try {
+        const { data } = await http.get(AUTH_ME);
+        return data;
+    } catch (error) {
+        throw new Error(error)
+    }
+}
+
+const doSingin = async (email, senha) => {
+    try {
+        const { data } = await http.post(AUTH_LOGIN, {email, senha});
+        if(data.token) {
+            salvaToken(data.token);
+            return true;    
         }
         return false;
+    } catch (error) {
+        console.log(error)
+        throw new Error(error)
     }
-
 }
 
-async function loginInvestidor (email, senha) {
-    const data = axios.post('http://localhost:8080/investors/auth/singin', {
-        email,
-        senha
-    })
-
-    return data;
-}
-
-async function loginEmpreendedor (email, senha) {
-    const resposta = axios.post('http://localhost:8080/entrepreneurs/auth/singin', {
-        email,
-        senha
-    })
-    .then(token => token.data)
-    .catch(err => err)
-
-    return resposta;
-}
