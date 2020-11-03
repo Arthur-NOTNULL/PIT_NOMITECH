@@ -1,0 +1,342 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body, #root{
+    height: 100%;
+}
+
+*, input, button{
+    border: 0;
+    outline: 0;
+
+    font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    --primary: #36393f;
+    --secondary: #2f3136;
+    --tertiary: rgb(32,34,37);
+    --quaternary: #292b2f;
+    --quinary: #393d42;
+    --senary: #828386;
+    --background: rgb(18, 18, 20);
+    
+    --white: #fff;
+    --gray: #8a8c90;
+    --chat-input: rgb(64,68,75);
+    --symbol: #74777a;
+    --notification: #f84a4b;
+    --discord: #fdc134;
+    --mention-detail: #f9a839;
+    --mention-message: #413f3f;
+    --link: #5d80d6;
+    --rocketseat: #6633cc;
+}
+
+/*
+    SL - Server List 
+    SN - Server Name
+    CI - Channel Info
+    UI - User Info
+    CL - Channel List 
+    CD - Channel Data 
+    UL - User List
+    UI - User Info
+*/
+
+#root div.grid{
+    display: grid;
+
+    grid-template-columns: 71px 240px auto 240px;
+    grid-template-rows: 46px auto 52px;
+
+    grid-template-areas: 
+    'SL SN CI UI'
+    'SL CL CD CD'
+    'SL CL CD CD';
+
+    height: 100%;
+}
+
+#root div.grid div.Server-List{
+    grid-area: SL;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background: var(--tertiary);
+    padding: 11px 0;
+
+    max-height: 100vh;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+#root div.grid div.Server-List div.Separator{
+    width: 32px;
+    border-bottom: 2px solid var(--quaternary);
+    margin-bottom: 8px;
+}
+
+#root div.grid div.Server-List button.Server-Button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+
+    margin-bottom: 8px;
+
+    background: var(--primary);
+
+    cursor: pointer;
+
+    position: relative;
+
+    transition: border-radius .2s, background-color .2s;
+}
+
+#root div.grid div.Server-List button.Server-Button.hasNotifications::after{
+    background-color: var(--notification);
+    width: auto;
+    height: 16px;
+
+    padding: 0 4px;
+
+    position: absolute;
+    bottom: -4px;
+    right: -4px;
+
+    border-radius: 12px;
+    border: 4px solid var(--quaternary);
+
+    text-align: right;
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--white);
+
+    content: '20';
+}
+
+#root div.grid div.Server-List button.Server-Button.active, 
+#root div.grid div.Server-List button.Server-Button:hover{
+    border-radius: 16px;
+    background-color: var(--discord);
+}
+
+#root div.grid div.Server-List button.Server-Button.isHome{
+    background: var(--tertiary);
+}
+
+#root div.grid div.Server-Name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 0 11px 0 16px;
+    
+    background-color: var(--secondary);
+
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 0px 0px;
+    z-index: 2;
+}
+
+#root div.grid div.Server-Name h1.title{
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--white);
+}
+
+#root div.grid div.Channel-Info{
+    grid-area: CI;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 17px;
+
+    background-color: var(--primary);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 0px 0px;
+    z-index: 2;
+}
+
+#root div.grid div.Channel-Info i{
+    font-size: 24px;
+
+    color: var(--symbol);
+}
+
+#root div.grid div.Channel-Info h1.title{
+    margin-left: 9px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    color: var(--white);
+}
+
+#root div.grid div.User-Info{
+    grid-area: UI;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 17px;
+
+    background-color: var(--primary);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 1px 0px 0px;
+    z-index: 2;
+}
+
+#root div.grid div.User-Info h1.user-name{
+    font-size: 16px;
+    font-weight: bold;
+
+    color: var(--white);
+    cursor: pointer;
+}
+
+#root div.grid div.User-Info i{
+    margin-left: 9px;
+
+    font-size: 16px;
+
+    color: var(--white);
+    cursor: pointer;
+}
+
+#root div.grid div.Channel-List{
+    grid-area: CL;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 24px 9.5px 0 16px;
+    background-color: var(--secondary);
+}
+
+#root div.grid div.Channel-List div.category{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 6px;
+}
+
+#root div.grid div.Channel-List div.category span{
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--gray);
+}
+
+#root div.grid div.Channel-List button.Channel-Button{
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    justify-content: space-between;
+
+    cursor: pointer;
+    padding: 5px 3px;
+    border-radius: 5px;
+
+    background-color: transparent;
+
+    transition: background-color .2s;
+}
+
+#root div.grid div.Channel-List button.Channel-Button div{
+    display: flex;
+    align-items: center;
+}
+
+#root div.grid div.Channel-List button.Channel-Button div span{
+    font-size: 15px;
+    color: var(--senary);
+
+    margin-left: 5px;
+}
+
+#root div.grid div.Channel-List button.Channel-Button div i.fa{
+    font-size: 20px;
+    color: var(--symbol);
+}
+
+#root div.grid div.Channel-List button.Channel-Button div i.fa-arrow-right{
+    font-size: 16px;
+    color: var(--symbol);
+    cursor: pointer;
+
+    display: none;
+    transition: color .2s;
+}
+ 
+#root div.grid div.Channel-List button.Channel-Button.active,
+#root div.grid div.Channel-List button.Channel-Button:hover{
+    background-color: var(--quinary);
+}
+
+#root div.grid div.Channel-List button.Channel-Button.active div span,
+#root div.grid div.Channel-List button.Channel-Button:hover div span,
+#root div.grid div.Channel-List button.Channel-Button.active div i.fa-arrow-right,
+#root div.grid div.Channel-List button.Channel-Button:hover div i.fa-arrow-right
+{
+    display: inline;
+    color: var(--white);
+}
+
+#root div.grid div.Channel-List div.Separator{
+    width: 64px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#root div.grid div.Channel-Data{
+    grid-area: CD;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    background-color: var(--background);
+}
+
+#root div.grid div.Channel-Data button.add-Startup{
+    position: absolute;
+
+    margin-left: 17px;
+    bottom: 40px;
+
+    z-index: 10;
+
+    width: 64px;
+    height: 64px;
+    background:var(--primary);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: border-radius .2s, background-color .2s;
+}
+
+#root div.grid div.Channel-Data button.add-Startup.active, 
+#root div.grid div.Channel-Data button.add-Startup:hover{
+    border-radius: 16px;
+    background-color: var(--discord);
+}

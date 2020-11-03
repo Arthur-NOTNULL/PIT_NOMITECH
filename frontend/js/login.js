@@ -76,14 +76,18 @@ btnLogin.addEventListener("click", async (event) => {
                                     })
                                     break;
                             }
+                            console.log(res)
+                            localStorage.setItem("user", JSON.stringify(res))
+                            removerToken();
                          })
                         .catch(err => { 
                             console.log(err)
+                            removerToken();
                             return Toast.fire({
                                 icon: 'error',
                                 title: 'Usuário não autorizado'
                             })
-                         })
+                        })
                 }
             })
             .catch(err => {
@@ -112,6 +116,10 @@ const pegaToken = () => {
 const salvaToken = (token) => {
     localStorage.setItem("token", token);
 } 
+
+const removerToken = () => {
+    localStorage.removeItem("token");
+}
 
 http.interceptors.request.use(config => {
     const token = pegaToken();
