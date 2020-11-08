@@ -54,6 +54,10 @@ export const Wrapper = styled.div`
     }
 
     .right{
+        .btn-Entrar{
+            text-decoration: none;
+        }
+
         button {
             padding: 0.7rem 2rem;
             border-radius: 50px;

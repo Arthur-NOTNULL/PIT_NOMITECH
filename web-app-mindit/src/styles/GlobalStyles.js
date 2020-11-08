@@ -37,5 +37,6 @@ export default createGlobalStyle`
         --color-yellow: #FDC134;
         --color-white: #fff;
         --color-black: #121214;
+        --color-gray: rgb(17, 17, 17);
     }
 `;

@@ -1,15 +1,15 @@
 import React from 'react';
 import { motion, useCycle } from 'framer-motion';
 
-import { Container, Wrapper, MenuBars, MenuClose} from './styles';
-
+import { Container, Wrapper} from './styles';
+import { MenuToggle } from "./MenuToggle";
 import { MenuItem } from "./MenuItem";
 
 import Logo from '../../assets/logo.svg';
 
 const sidebar = {
     open: (height = 1000) => ({
-      clipPath: `circle(${height * 2 + 200}px at 1000px 40px)`,
+      clipPath: `circle(${height * 2 + 200}px at 100px 71px)`,
       transition: {
         type: "spring",
         stiffness: 20,
@@ -17,7 +17,7 @@ const sidebar = {
       }
     }),
     closed: {
-      clipPath: "circle(30px at 1000px 40px)",
+      clipPath: "circle(30px at 1000px 71px)",
       transition: {
         delay: 0.5,
         type: "spring",
@@ -32,19 +32,17 @@ function LandingMobileHeader() {
 
     return (
         <Container>
-            <Wrapper>
-                <img src={Logo} alt="logo"/>
-                <div className="menu" onClick={() => toggleOpen()}>
-                    {isOpen ? <MenuClose/> : <MenuBars/>}
-                </div>
-            </Wrapper>
+          <Wrapper>
+            <img src={Logo} alt="logo"/>
             <motion.nav
-                initial={false}
-                animate={isOpen ? "open" : "closed"}
+              initial={false}
+              animate={isOpen ? "open" : "closed"}
             >
-                <MenuItem/>
-                <motion.div className="background" variants={sidebar} />
+              <MenuItem/>
+              <MenuToggle toggle={() => toggleOpen()} />
+              <motion.div className="background" variants={sidebar} />
             </motion.nav>
+          </Wrapper>
         </Container>       
     );
 }

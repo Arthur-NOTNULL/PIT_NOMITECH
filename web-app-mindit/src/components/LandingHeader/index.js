@@ -1,4 +1,6 @@
 import React from 'react';
+import {motion} from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 import { Container, Wrapper } from './styles';
 import Logo from '../../assets/logo.svg';
@@ -12,7 +14,14 @@ function LandingHeader() {
                 <a href="#">HOME</a>
             </div>
             <div className="right">
-                <button type="button">ENTRAR</button>
+              <Link className="btn-Entrar" to="/login">
+                <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                  ENTRAR
+                </motion.button>
+              </Link>
             </div>
           </Wrapper>
       </Container>
