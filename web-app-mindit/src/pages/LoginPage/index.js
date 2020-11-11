@@ -1,6 +1,9 @@
 import React from 'react';
+import { FiArrowRight } from 'react-icons/fi';
 
-import { Container } from './styles';
+import { Container, Wrapper } from './styles';
+
+import LoginIMG from '../../assets/FogueteDecolante.svg';
 
 import GlobalStyles from '../../styles/GlobalStyles';
 
@@ -9,7 +12,10 @@ function LoginPage() {
       <>
         <GlobalStyles/>
         <Container>
-            <h1>Hello Login Page</h1>
+            <img src={LoginIMG} alt="LoginIMG"/>
+            <Wrapper>
+
+            </Wrapper>
         </Container>
       </>
   );

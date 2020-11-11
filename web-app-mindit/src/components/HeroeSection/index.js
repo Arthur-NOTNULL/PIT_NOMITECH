@@ -15,13 +15,11 @@ const HeroeSection = ({title, strongTitle, text}) => {
           <p>{text}</p>
           <Link to="/login" className="btn-Entrar">
             <motion.button
-              whileHover={{ scale: 1.1 }}
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.95 }}
             >
               ENTRAR 
-              <motion.div>
-                  <FiArrowRight color="rbg(0,0,0)" size={28}/>
-              </motion.div>
+              <FiArrowRight color="rbg(0,0,0)" size={28}/>
             </motion.button>
           </Link>
         </div>

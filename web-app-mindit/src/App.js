@@ -20,7 +20,7 @@ function App() {
         <Route path="/login" component={LoginPage}/>
         <Route path="/singUp" component={SingUpPage}/>
         <PrivateRoute path="/investor" component={InvestorHomePage}/>
-        <PrivateRoute path="/empretreuner" component={EmpretreunerHomePage}/>
+        <Route path="/empretreuner" component={EmpretreunerHomePage}/>
         <Route path="*">
           <h1>Essa página não existe</h1>
         </Route>

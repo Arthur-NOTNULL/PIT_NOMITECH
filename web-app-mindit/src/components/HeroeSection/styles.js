@@ -57,17 +57,6 @@ export const Wrapper = styled.div`
 
             outline: none;
             cursor: pointer;
-
-            div {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            &:hover div{
-                translate: .5s;
-                transform: translateX(11px);
-            }
         }   
     }
 

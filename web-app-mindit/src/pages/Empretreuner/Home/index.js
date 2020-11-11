@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Grid } from './styles';
+
+import ServerList from '../../../components/ServerList';
+import ServerName from '../../../components/ServerName';
+import ChannelInfo from '../../../components/ChannelInfo';
+import UserInfo from '../../../components/UserInfo';
+import ChannelList from '../../../components/ChannelList';
+import ChannelData from '../../../components/ChannelData';
 
 import GlobalStyles from '../../../styles/GlobalStyles';
 
@@ -8,9 +15,14 @@ function Home() {
   return (
       <>
         <GlobalStyles/>
-        <Container>
-            <h1>Hello Home Empreendedor</h1>
-        </Container>
+        <Grid>
+            <ServerList/>
+            <ServerName/>
+            <ChannelInfo/>
+            <UserInfo/>
+            <ChannelList/>
+            <ChannelData/>
+        </Grid>
       </>
   );
 }
